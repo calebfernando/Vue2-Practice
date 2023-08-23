@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <form action="" @submit.prevent="guardarTarea()">
+            <input type="text" v-model="nuevaTarea">
+            <input type="submit" value="Guardar">
+        </form>
+        <ul>
+            <li v-for="tarea in tareas">
+                {{tarea}}
+            </li>
+        </ul>
+        <pre>{{$data}}</pre>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.8/vue.min.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                nuevaTarea:"",
+                tareas:[]
+            },
+            methods:{
+                guardarTarea(){
+                    this.tareas.push(this.nuevaTarea)
+                    this.nuevaTarea=""
+                }
+            }
+        });
+
+    </script>
+
+
+</body>
+</html>
