@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>practice2</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="range" v-model="ancho" name="" id="" />ancho
+      <br />
+      <input type="range" v-model="alto" name="" id="" />alto
+      <br />
+      {{urlCompleta}}
+      <br />
+      <img :src="urlCompleta" alt="" />
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.8/vue.min.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          baseUrl: "https://placekitten.com",
+          ancho: 50,
+          alto: 50,
+        },
+        computed: {
+          urlCompleta() {
+            return `${this.baseUrl}/${this.ancho * 3}/${this.alto * 3}`;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
