@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>renderizado de listas</title>
+  </head>
+  <body>
+    <div id="app">
+        <h1>renderizado con v-for de objetos</h1>
+        <ul>
+            <li v-for="(value,propiedad) in usuario">
+                {{propiedad}}:{{value}}
+            </li>
+        </ul>
+        <hr>
+        <h1>renderizado con v-for de arrays con filtros</h1>
+        <input type="range" name="" id="" v-model="time">{{time}}
+        <span>delizar a la derecha para ver todas las tareas</span>
+        <br>
+        <input type="text" name="" id="" v-model="search" placeholder="buscar tareas por nombre">
+        <ul>
+            <li v-for="(item,index) in filtroTarea">
+                {{index}}-{{item.nombre}}: <strong>{{item.tiempo}}</strong>
+            </li>
+        </ul>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.8/vue.min.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          time:0,
+          search:"",
+          usuario: {
+            name: "caleb",
+            email: "caleb@gmail.com",
+          },
+          tareas: [
+            { nombre: "Tarea 1", tiempo: 45 },
+            { nombre: "Tarea 2", tiempo: 60 },
+            { nombre: "Tarea 3", tiempo: 30 },
+            { nombre: "Tarea 4", tiempo: 90 },
+            { nombre: "Tarea 5", tiempo: 15 },
+          ],
+        },
+        computed:{
+          filtroTarea(){
+            return this.tareas.filter(el=>{
+              return el.tiempo<=this.time && el.nombre.includes(this.search)
+            })
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
