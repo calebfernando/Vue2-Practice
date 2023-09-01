@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ciclo de vida</title>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="usuario in usuarios">{{usuario.name}}</li>
+      </ul>
+      <pre>{{$data}}</pre>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.8/vue.min.js"></script>
+    <script>
+      const vm = new Vue({
+        created() {
+          var url = "https://jsonplaceholder.typicode.com/users";
+          fetch(url)
+            .then((res) => res.json())
+            .then((res) => (this.usuarios = res));
+        },
+        el: "#app",
+        data: {
+          usuarios: [],
+        },
+      });
+    </script>
+  </body>
+</html>
