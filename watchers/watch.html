@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vueWatchers</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" v-model="password" />
+      {{estado}}
+      <pre>{{$data}}</pre>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.8/vue.min.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          password: null,
+          estado: "introduce contraseña...",
+          noValidos: ["admin", "12345", "password"],
+        },
+        watch: {
+          password(nuevo, antiguo) {
+            if (this.noValidos.indexOf(nuevo) > -1) {
+              this.estado = "password invalido";
+              return false;
+            }
+            if (nuevo.length < 5) {
+              this.estado = "la contraseña debe tener al menos 5 caracteres";
+              return false;
+            }
+            this.estado = "contraseña correcta";
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
